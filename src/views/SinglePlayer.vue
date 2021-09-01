@@ -1,10 +1,10 @@
 <template>
   <div>
     <b-form @submit.prevent="calculate(true)">
-      <b-card-group deck class="py-1">
-        <b-card bg-variant="light" text-variant="success">
+      <b-card-group deck class="mt-3 mb-2">
+        <b-card bg-variant="primary" text-variant="light">
           <b-card-text>
-            <h4 class="text-primary py-1">Current Skills</h4>
+            <h4 class="text-light py-1">Current Skills</h4>
             <b-row class="py-1">
               <b-col>
                 <label for="stamina">Stamina </label>
@@ -42,7 +42,9 @@
                 </b-form-input>
               </b-col>
               <b-col>
-                <label for="concentration">Conc<span class="d-none d-md-inline">entration</span></label>
+                <label for="concentration"
+                  >Conc<span class="d-none d-md-inline">entration</span></label
+                >
               </b-col>
               <b-col>
                 <b-form-input
@@ -66,7 +68,9 @@
                 </b-form-input>
               </b-col>
               <b-col>
-                <label for="consistency">Cons<span class="d-none d-md-inline">istency</span></label>
+                <label for="consistency"
+                  >Cons<span class="d-none d-md-inline">istency</span></label
+                >
               </b-col>
               <b-col>
                 <b-form-input
@@ -92,14 +96,14 @@
             </b-row>
             <b-row align-h="end">
               <b-col cols="3">
-                <b-button type="submit" variant="primary">Train!</b-button>
+                <b-button size="lg"  type="submit" variant="secondary">Train!</b-button>
               </b-col>
             </b-row>
           </b-card-text>
         </b-card>
-        <b-card bg-variant="light" text-variant="success">
+        <b-card bg-variant="primary" text-variant="light">
           <b-card-text>
-            <h4 class="text-primary py-1">Options</h4>
+            <h4 class="text-light py-1">Training Options</h4>
             <b-row class="py-1">
               <b-col>
                 <label for="staminaNets">Stamina Nets</label>
@@ -197,9 +201,9 @@
         v-if="playerHistories.length > 0"
       >
         <b-card-group class="py-2">
-          <b-card bg-variant="light" text-variant="success">
+          <b-card bg-variant="primary" text-variant="light">
             <b-card-text>
-              <h4 class="text-primary py-1">
+              <h4 class="text-light py-1">
                 End of Season {{ index + 1 }} : Age
                 {{ playerHistory.currentAge + 1 }}
               </h4>
@@ -208,7 +212,7 @@
                   <label for="stamina">Stamina: </label>
                 </b-col>
                 <b-col
-                  ><p class="text-primary">
+                  ><p class="text-secondary">
                     {{ staminaSkills[Math.floor(playerHistory.stamina)] }}
                   </p></b-col
                 >
@@ -220,7 +224,7 @@
                   >
                   </b-form-input>
                 </b-col>
-                <b-col >
+                <b-col>
                   <b-form-select
                     v-model="playerHistory.staminaNets"
                     :options="twoNets"
@@ -230,7 +234,7 @@
                   <label for="keeping">Keeping: </label>
                 </b-col>
                 <b-col
-                  ><p class="text-primary">
+                  ><p class="text-secondary">
                     {{
                       21 > playerHistory.keeping
                         ? skills[Math.floor(playerHistory.keeping)]
@@ -258,7 +262,7 @@
                   <label for="batting">Batting: </label>
                 </b-col>
                 <b-col
-                  ><p class="text-primary">
+                  ><p class="text-secondary">
                     {{
                       21 > playerHistory.batting
                         ? skills[Math.floor(playerHistory.batting)]
@@ -284,7 +288,7 @@
                   <label for="concentration">Concentration:</label>
                 </b-col>
                 <b-col
-                  ><p class="text-primary">
+                  ><p class="text-secondary">
                     {{
                       21 > playerHistory.concentration
                         ? skills[Math.floor(playerHistory.concentration)]
@@ -307,7 +311,7 @@
                   <label for="bowling">Bowling: </label>
                 </b-col>
                 <b-col
-                  ><p class="text-primary">
+                  ><p class="text-secondary">
                     {{
                       21 > playerHistory.bowling
                         ? skills[Math.floor(playerHistory.bowling)]
@@ -330,10 +334,12 @@
                   ></b-form-select>
                 </b-col>
                 <b-col>
-                  <label for="consistency">Cons<span class="d-none d-md-inline">istency</span>:</label>
+                  <label for="consistency"
+                    >Cons<span class="d-none d-md-inline">istency</span>:</label
+                  >
                 </b-col>
                 <b-col
-                  ><p class="text-primary">
+                  ><p class="text-secondary">
                     {{
                       21 > playerHistory.consistency
                         ? skills[Math.floor(playerHistory.consistency)]
@@ -356,7 +362,7 @@
                   <label for="fielding">Fielding: </label>
                 </b-col>
                 <b-col
-                  ><p class="text-primary">
+                  ><p class="text-secondary">
                     {{
                       21 > playerHistory.fielding
                         ? skills[Math.floor(playerHistory.fielding)]
@@ -379,12 +385,11 @@
                   ></b-form-select>
                 </b-col>
                 <b-col cols="6">
-                  <b-button type="submit" variant="primary"
+                  <b-button type="submit" variant="secondary"
                     >Update Nets</b-button
                   >
                 </b-col>
               </b-row>
-              <b-row align-h="end"> </b-row>
             </b-card-text>
           </b-card>
         </b-card-group>
@@ -398,7 +403,7 @@
 import $ from "jquery";
 
 export default {
-  name: "TrainingCalc",
+  name: "SinglePlayer",
   components: {},
   data() {
     return {
@@ -412,15 +417,15 @@ export default {
           consistency: 1,
           fielding: 1,
           staminaNets: 1,
-          keepingNets: 1,
+          keepingNets: 0,
           battingNets: 2,
-          bowlingNets: 1,
+          bowlingNets: 0,
           fieldingNets: 1,
           currentAge: 17,
           currentWeek: 1,
         },
       ],
-      trainingAge: 22,
+      trainingAge: 23,
     };
   },
   computed: {

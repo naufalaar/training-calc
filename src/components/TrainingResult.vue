@@ -1,7 +1,7 @@
 <template>
   <b-form @submit.prevent="calculate">
     <b-card-group deck class="py-3">
-      <b-card bg-variant="success" text-variant="light" title="Current Skills">
+      <b-card bg-variant="primary" text-variant="light" title="Current Skills">
         <b-card-text>
           <b-row class="py-1">
             <b-col>
@@ -90,7 +90,7 @@
           </b-row>
           <b-row align-h="end">
             <b-col cols="3">
-              <b-button type="submit" variant="primary">Submit</b-button>
+              <b-button type="submit" variant="secondary">Submit</b-button>
             </b-col>
           </b-row>
         </b-card-text>
