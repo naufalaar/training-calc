@@ -4,12 +4,13 @@ import SinglePlayer from "../views/SinglePlayer.vue";
 import PlayerSeason from "../views/PlayerSeason.vue";
 import MultiplePlayers from "../views/MultiplePlayers.vue";
 import Insane from "../views/Insane.vue";
+import WageCalculator from "../views/WageCalculator.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/",
+    path: "/singlePlayer",
     name: "SinglePlayer",
     component: SinglePlayer,
   },
@@ -27,6 +28,11 @@ const routes = [
     path: "/insane",
     name: "Insane",
     component: Insane,
+  },
+  {
+    path: "/",
+    name: "WageCalculator",
+    component: WageCalculator,
   },
 ];
 

@@ -96,7 +96,9 @@
             </b-row>
             <b-row align-h="end">
               <b-col cols="3">
-                <b-button size="lg"  type="submit" variant="secondary">Train!</b-button>
+                <b-button size="lg" type="submit" variant="secondary"
+                  >Train!</b-button
+                >
               </b-col>
             </b-row>
           </b-card-text>
@@ -401,7 +403,6 @@
 
 <script>
 import $ from "jquery";
-
 export default {
   name: "SinglePlayer",
   components: {},

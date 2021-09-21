@@ -139,9 +139,7 @@
               </b-col>
               <b-col></b-col>
               <b-col align="center" align-self="center">
-                <b-button type="submit" variant="secondary"
-                  >Train!</b-button
-                >
+                <b-button type="submit" variant="secondary">Train!</b-button>
               </b-col>
             </b-row>
           </b-card-text>
@@ -157,7 +155,7 @@
             <!-- Column Names -->
             <b-row align-v="center">
               <b-col></b-col>
-              <b-col >
+              <b-col>
                 <h5 class="text-light text-center">Stamina</h5>
               </b-col>
               <b-col>
@@ -219,129 +217,133 @@
               </b-col>
               <b-col>
                 <b-form-input
-                    id="staminaResult"
-                    disabled
-                    :placeholder="staminaSkills[Math.floor(weekResult.stamina)]"
-                     v-if="isHovered"
-                  ></b-form-input>
-                  <b-form-input
-                    id="staminaResult"
-                    disabled
-                    :placeholder="weekResult.stamina"
-                    v-else
-                  >
-                  </b-form-input>
-                  
-                  
+                  id="staminaResult"
+                  disabled
+                  :placeholder="staminaSkills[Math.floor(weekResult.stamina)]"
+                  v-if="isHovered"
+                ></b-form-input>
+                <b-form-input
+                  id="staminaResult"
+                  disabled
+                  :placeholder="weekResult.stamina"
+                  v-else
+                >
+                </b-form-input>
               </b-col>
               <b-col>
                 <b-form-input
-                    id="battingResult"
-                    disabled
-                    :placeholder="skills[Math.floor(weekResult.batting)]"
-                    v-if="isHovered"
-                  >
-                  </b-form-input>
-                  <b-form-input
-                    id="battingResult"
-                    disabled
-                    :placeholder="weekResult.batting"
-                    v-else
-                  >
-                  </b-form-input>
+                  id="battingResult"
+                  disabled
+                  :placeholder="skills[Math.floor(weekResult.batting)]"
+                  v-if="isHovered"
+                >
+                </b-form-input>
+                <b-form-input
+                  id="battingResult"
+                  disabled
+                  :placeholder="weekResult.batting"
+                  v-else
+                >
+                </b-form-input>
               </b-col>
               <b-col>
                 <b-form-input
-                    id="bowlingResult"
-                    disabled
-                    :placeholder="skills[Math.floor(weekResult.bowling)]"
-                    v-if="isHovered"
-                  >
-                  </b-form-input>
-                  <b-form-input
-                    id="bowlingResult"
-                    disabled
-                    :placeholder="weekResult.bowling"
-                    v-else
-                  >
-                  </b-form-input>
+                  id="bowlingResult"
+                  disabled
+                  :placeholder="skills[Math.floor(weekResult.bowling)]"
+                  v-if="isHovered"
+                >
+                </b-form-input>
+                <b-form-input
+                  id="bowlingResult"
+                  disabled
+                  :placeholder="weekResult.bowling"
+                  v-else
+                >
+                </b-form-input>
               </b-col>
               <b-col>
                 <b-form-input
-                    id="fieldingResult"
-                    disabled
-                    :placeholder="skills[Math.floor(weekResult.fielding)]"
-                    v-if="isHovered"
-                  >
-                  </b-form-input>
-                  <b-form-input
-                    id="fieldingResult"
-                    disabled
-                    :placeholder="weekResult.fielding"
-                    v-else
-                  >
-                  </b-form-input>
+                  id="fieldingResult"
+                  disabled
+                  :placeholder="skills[Math.floor(weekResult.fielding)]"
+                  v-if="isHovered"
+                >
+                </b-form-input>
+                <b-form-input
+                  id="fieldingResult"
+                  disabled
+                  :placeholder="weekResult.fielding"
+                  v-else
+                >
+                </b-form-input>
               </b-col>
               <b-col>
-                <b-form-input 
-                    id="keepingResult"
-                    disabled
-                    :placeholder="skills[Math.floor(weekResult.keeping)]"
-                    v-if="isHovered"
-                  >
-                  </b-form-input>
-                  <b-form-input 
-                    id="keepingResult"
-                    disabled
-                    :placeholder="weekResult.keeping"
-                    v-else
-                  >
-                  </b-form-input>
+                <b-form-input
+                  id="keepingResult"
+                  disabled
+                  :placeholder="skills[Math.floor(weekResult.keeping)]"
+                  v-if="isHovered"
+                >
+                </b-form-input>
+                <b-form-input
+                  id="keepingResult"
+                  disabled
+                  :placeholder="weekResult.keeping"
+                  v-else
+                >
+                </b-form-input>
               </b-col>
             </b-row>
             <!-- Results Row 3 -->
             <b-row class="py-1">
               <b-col align-self="end">
                 <h5 class="text-light text-right">Conc / Cons:</h5>
-              </b-col>     
+              </b-col>
               <b-col> </b-col>
               <b-col>
                 <b-form-input
-                    id="concentration"
-                    disabled
-                    :placeholder="skills[Math.floor(weekResult.concentration)]"
-                    v-if="isHovered"
-                  >
-                  </b-form-input>
-                  <b-form-input
-                    id="concentration"
-                    disabled
-                    :placeholder="weekResult.concentration"
-                    v-else
-                  >
-                  </b-form-input>
+                  id="concentration"
+                  disabled
+                  :placeholder="skills[Math.floor(weekResult.concentration)]"
+                  v-if="isHovered"
+                >
+                </b-form-input>
+                <b-form-input
+                  id="concentration"
+                  disabled
+                  :placeholder="weekResult.concentration"
+                  v-else
+                >
+                </b-form-input>
               </b-col>
               <b-col>
                 <b-form-input
-                    id="consistency"
-                    disabled
-                    :placeholder="skills[Math.floor(weekResult.consistency)]"
-                    v-if="isHovered"
-                  >
-                  </b-form-input>
-                  <b-form-input
-                    id="consistency"
-                    disabled
-                    :placeholder="weekResult.consistency"
-                    v-else
-                  >
-                  </b-form-input>
+                  id="consistency"
+                  disabled
+                  :placeholder="skills[Math.floor(weekResult.consistency)]"
+                  v-if="isHovered"
+                >
+                </b-form-input>
+                <b-form-input
+                  id="consistency"
+                  disabled
+                  :placeholder="weekResult.consistency"
+                  v-else
+                >
+                </b-form-input>
               </b-col>
               <b-col align="center">
-                <b-button variant="secondary" v-if="isHovered" v-on:click="toggleSkill(false)"
+                <b-button
+                  variant="secondary"
+                  v-if="isHovered"
+                  v-on:click="toggleSkill(false)"
                   >Show Levels</b-button
                 >
-                <b-button variant="secondary" v-else v-on:click="toggleSkill(true)"
+                <b-button
+                  variant="secondary"
+                  v-else
+                  v-on:click="toggleSkill(true)"
                   >Show Skills</b-button
                 >
               </b-col>
@@ -384,21 +386,6 @@ export default {
           fieldingNets: 1,
           week: 0,
         },
-        // {
-        //   stamina: 1.1,
-        //   keeping: 2.2,
-        //   batting: 3.3,
-        //   concentration: 20.99,
-        //   bowling: 5.5,
-        //   consistency: 6.6,
-        //   fielding: 7.7,
-        //   staminaNets: 2,
-        //   keepingNets: 2,
-        //   battingNets: 2,
-        //   bowlingNets: 2,
-        //   fieldingNets: 2,
-        //   week: 2,
-        // },
       ],
       playerAge: 17,
       seasonWeeks: 16,
@@ -432,8 +419,8 @@ export default {
   },
   methods: {
     toggleSkill(toggle) {
-        this.isHovered = toggle
-      },
+      this.isHovered = toggle;
+    },
     calculate(build) {
       if (build) {
         this.build();
@@ -444,29 +431,21 @@ export default {
       let backup = $.extend(true, {}, this.seasonResult[0]);
       this.seasonResult = [];
       this.seasonResult.push(backup);
-      for (
-        let index = 1;
-        index <= this.seasonWeeks;
-        index++
-      ) {
+      for (let index = 1; index <= this.seasonWeeks; index++) {
         this.seasonResult.push(
           $.extend(true, {}, this.seasonResult[index - 1])
         );
-       this.seasonResult[index].week = index;
+        this.seasonResult[index].week = index;
       }
     },
     modifyResult() {
       for (let index = 1; index < this.seasonResult.length; index++) {
-        this.seasonResult[index].stamina =
-          this.seasonResult[index - 1].stamina;
-        this.seasonResult[index].keeping =
-          this.seasonResult[index - 1].keeping;
-        this.seasonResult[index].batting =
-          this.seasonResult[index - 1].batting;
+        this.seasonResult[index].stamina = this.seasonResult[index - 1].stamina;
+        this.seasonResult[index].keeping = this.seasonResult[index - 1].keeping;
+        this.seasonResult[index].batting = this.seasonResult[index - 1].batting;
         this.seasonResult[index].concentration =
           this.seasonResult[index - 1].concentration;
-        this.seasonResult[index].bowling =
-          this.seasonResult[index - 1].bowling;
+        this.seasonResult[index].bowling = this.seasonResult[index - 1].bowling;
         this.seasonResult[index].consistency =
           this.seasonResult[index - 1].consistency;
         this.seasonResult[index].fielding =
@@ -515,11 +494,9 @@ export default {
             break;
         }
         let multiplier = 0;
-        multiplier =
-          this.trainingTimes[type][nets][this.playerAge - 17];
+        multiplier = this.trainingTimes[type][nets][this.playerAge - 17];
         currentPlayer[skill] = Number.parseFloat(
-          Number(currentPlayer[skill]) +
-            ( 1 / multiplier )
+          Number(currentPlayer[skill]) + 1 / multiplier
         ).toPrecision(4);
         if (skill == "stamina" && currentPlayer[skill] > 11)
           currentPlayer[skill] = 11;
