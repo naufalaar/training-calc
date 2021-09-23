@@ -7,13 +7,13 @@
             <h4 class="text-light py-1">Wage Caculator</h4>
             <b-row>
               <b-col>
-                <!-- <h5 class="text-light text-right">Current Wage:</h5> -->
+                <h5 class="text-light text-right">Current Wage:</h5>
               </b-col>
               <b-col>
-                <!-- <b-form-group>
-                  <b-form-input id="wage" v-model="wage" required>
+                <b-form-group>
+                  <b-form-input id="wage" v-model="wage" v-on:change="calculateSkillLevel()" required>
                   </b-form-input>
-                </b-form-group> -->
+                </b-form-group>
               </b-col>
               <b-col></b-col>
               <b-col></b-col>
@@ -25,7 +25,7 @@
                 <h5 class="text-light text-center">Skill Level</h5>
               </b-col>
               <b-col>
-                <h5 class="text-light text-center">Estimated Wage</h5>
+                <h5 class="text-light text-center">Estimate Wage</h5>
               </b-col>
               <b-col>
                 <h5 class="text-light text-center">Minimum wage</h5>
@@ -34,7 +34,7 @@
                 <h5 class="text-light text-center">Maximum wage</h5>
               </b-col>
               <b-col>
-                <!-- <h5 class="text-light text-center">Estimate</h5> -->
+                <h5 class="text-light text-center">Estimate Level</h5>
               </b-col>
             </b-row>
             <b-row
@@ -75,13 +75,11 @@
                 </b-form-group>
               </b-col>
               <b-col align="center" align-self="center">
-                <!-- <b-form-group>
-                  <b-form-radio
-                    size="lg"
-                    name="some-radios"
-                    value="B"
-                  ></b-form-radio>
-                </b-form-group> -->
+                <b-form-group>
+                  <b-form-input id="stamina" :value="skill.estimatedMin + ' - ' + skill.estimatedMax" disabled>
+                    
+                  </b-form-input>
+                </b-form-group>
               </b-col>
             </b-row>
             <b-row align-v="center">
@@ -123,19 +121,11 @@ export default {
   components: {},
   data() {
     return {
-      wage: 400,
+      baseWage: 250,
+      wage: 641,
       estimatedWage: 0,
       minWage: 0,
       maxWage: 0,
-      player: {
-        stamina: 5,
-        batting: 6,
-        bowling: 1,
-        fielding: 5,
-        keeping: 1,
-        concentration: 5,
-        consistency: 1,
-      },
       wages: [
         {
           skillName: "Stamina",
@@ -144,30 +134,38 @@ export default {
           current: 0,
           min: 0,
           max: 0,
+          estimatedMin: 0,
+          estimatedMax: 0,
         },
         {
           skillName: "Batting",
-          skillLevel: 5.5,
-          type: "primary",
-          current: 0,
-          min: 0,
-          max: 0,
-        },
-        {
-          skillName: "Bowling",
           skillLevel: 1,
           type: "primary",
           current: 0,
           min: 0,
           max: 0,
+          estimatedMin: 0,
+          estimatedMax: 0,
+        },
+        {
+          skillName: "Bowling",
+          skillLevel: 6,
+          type: "primary",
+          current: 0,
+          min: 0,
+          max: 0,
+          estimatedMin: 0,
+          estimatedMax: 0,
         },
         {
           skillName: "Fielding",
-          skillLevel: 5,
+          skillLevel: 3,
           type: "secondary",
           current: 0,
           min: 0,
           max: 0,
+          estimatedMin: 0,
+          estimatedMax: 0,
         },
         {
           skillName: "Keeping",
@@ -176,22 +174,28 @@ export default {
           current: 0,
           min: 0,
           max: 0,
+          estimatedMin: 0,
+          estimatedMax: 0,
         },
         {
           skillName: "Concentration",
-          skillLevel: 5,
+          skillLevel: 2,
           type: "secondary",
           current: 0,
           min: 0,
           max: 0,
+          estimatedMin: 0,
+          estimatedMax: 0,
         },
         {
           skillName: "Consistency",
-          skillLevel: 1,
+          skillLevel: 6,
           type: "secondary",
           current: 0,
           min: 0,
           max: 0,
+          estimatedMin: 0,
+          estimatedMax: 0,
         },
       ],
     };
@@ -219,7 +223,7 @@ export default {
         );
       }
       this.wageReset();
-      this.calculateMinEstimate("batting");
+      this.calculateSkillLevel();
     },
     wageReset(){
       this.estimatedWage = this.wageSum("current");
@@ -243,6 +247,7 @@ export default {
         "max"
       );
       this.wageReset();
+      this.calculateSkillLevel();
     },
     calculateWage(skillLevel, skillType, type) {
       let calculatedWage = 0;
@@ -253,26 +258,50 @@ export default {
       if (skillType == "secondary")
         calculatedWage = Math.pow(level * 0.67 - 0.33, 5) * 0.05;
       if (skillType == "primary")
-        calculatedWage = Math.pow(level - 3, 3) * (level - 1);
+        // calculatedWage = Math.pow(leformulavel - 3, 3) * (level - 1);
+        // Ollie's formula
+        calculatedWage = Math.pow(level - 1, 5) * 0.05;
       return calculatedWage.toFixed(2);
     },
     wageSum(field) {
-      let sum = 250;
+      let sum = this.baseWage;
       for (let skill of this.wages) {
         sum += Number.parseFloat(skill[field]);
       }
       return sum.toFixed(2);
     },
-    calculateMinEstimate(skill){
-      let skillWage = Number.parseInt(this.wage) - 250;
+    calculateSkillLevel(){
+      for(let i=0;i<this.wages.length;i++){
+        this.wages[i].estimatedMin = this.calculateEstimate(this.wages[i], "Min");
+        this.wages[i].estimatedMax = this.calculateEstimate(this.wages[i], "Max");
+      }
+    },
+    calculateEstimate(skill, type){
+      let skillWage = Number.parseInt(this.wage) - this.baseWage;
+      console.log(skillWage);
       for (let wage of this.wages){
-        if (wage.skillName != skill){
-          skillWage -= wage.max;
+        if (wage.skillName != skill.skillName){
+          if (type == "Min")
+            skillWage -= wage.max;
+          else if (type == "Max")
+            skillWage -= wage.min;
         }
       }
-      console.log(skillWage);
-    }
-    
+      console.log(skill.skillName + ":" + skillWage);
+
+      let skillLevel = 1;
+      if(skill.type == "primary")
+        skillLevel = Math.pow((skillWage/0.05),1/5)+1;
+      else if (skill.type == "secondary")
+        skillLevel = (Math.pow((skillWage/0.05),1/5) + 0.03) / 0.67;
+      if(isNaN(skillLevel))
+        return skill.skillLevel;
+      if (type == "Min" && skill.skillLevel > skillLevel)
+        return skill.skillLevel;
+      if (type == "Max" && Math.floor(skill.skillLevel) + 0.99 < skillLevel)
+        return Math.floor(skill.skillLevel) + 0.99;
+      return skillLevel.toFixed(2);
+    },
   },
 };
 </script>
