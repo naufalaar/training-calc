@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container class="overflow-hidden" fluid="xs">
     <Header />
     <router-view />
   </b-container>

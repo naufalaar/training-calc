@@ -1,196 +1,188 @@
 <template>
   <div>
     <b-form @submit.prevent="calculate(true)">
-      <b-card-group deck class="mt-3 mb-2">
-        <b-card bg-variant="primary" text-variant="light">
-          <b-card-text>
-            <h4 class="text-light py-1">Current Skills</h4>
-            <b-row class="py-1">
-              <b-col>
-                <label for="stamina">Stamina </label>
-              </b-col>
-              <b-col>
+      <b-card class="mt-3 mb-2" bg-variant="primary" text-variant="light">
+        <b-card-text>
+          <h4 class="text-secondary py-1">Current Skills</h4>
+          <!-- Player Skills -->
+          <b-row>
+            <b-col md cols="6">
+              <b-form-group label="Stamina:" label-for="stamina">
                 <b-form-input
                   id="stamina"
                   v-model.number="playerHistories[0].stamina"
                   required
                 >
                 </b-form-input>
-              </b-col>
-              <b-col>
-                <label for="keeping">Keeping </label>
-              </b-col>
-              <b-col>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Keeping:" label-for="keeping">
                 <b-form-input
                   id="keeping"
                   v-model.number="playerHistories[0].keeping"
                   required
                 >
                 </b-form-input>
-              </b-col>
-            </b-row>
-            <b-row class="py-1">
-              <b-col>
-                <label for="batting">Batting </label>
-              </b-col>
-              <b-col>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Batting:" label-for="batting">
                 <b-form-input
                   id="batting"
                   v-model.number="playerHistories[0].batting"
                   required
                 >
                 </b-form-input>
-              </b-col>
-              <b-col>
-                <label for="concentration"
-                  >Conc<span class="d-none d-md-inline">entration</span></label
-                >
-              </b-col>
-              <b-col>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Concetration:" label-for="concentration">
                 <b-form-input
                   id="concentration"
                   v-model.number="playerHistories[0].concentration"
                   required
                 >
                 </b-form-input>
-              </b-col>
-            </b-row>
-            <b-row class="py-1">
-              <b-col>
-                <label for="bowling">Bowling </label>
-              </b-col>
-              <b-col>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Bowling:" label-for="bowling">
                 <b-form-input
                   id="bowling"
                   v-model.number="playerHistories[0].bowling"
                   required
                 >
                 </b-form-input>
-              </b-col>
-              <b-col>
-                <label for="consistency"
-                  >Cons<span class="d-none d-md-inline">istency</span></label
-                >
-              </b-col>
-              <b-col>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Consistency:" label-for="consistency">
                 <b-form-input
                   id="consistency"
                   v-model.number="playerHistories[0].consistency"
                   required
                 >
                 </b-form-input>
-              </b-col>
-            </b-row>
-            <b-row class="py-1">
-              <b-col cols="3">
-                <label for="fielding">Fielding </label>
-              </b-col>
-              <b-col cols="3">
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Fielding:" label-for="fielding">
                 <b-form-input
                   id="fielding"
                   v-model.number="playerHistories[0].fielding"
                   required
                 >
                 </b-form-input>
-              </b-col>
-            </b-row>
-            <b-row align-h="end">
-              <b-col cols="3">
-                <b-button size="lg" type="submit" variant="secondary"
-                  >Train!</b-button
-                >
-              </b-col>
-            </b-row>
-          </b-card-text>
-        </b-card>
-        <b-card bg-variant="primary" text-variant="light">
-          <b-card-text>
-            <h4 class="text-light py-1">Training Options</h4>
-            <b-row class="py-1">
-              <b-col>
-                <label for="staminaNets">Stamina Nets</label>
-              </b-col>
-              <b-col>
+              </b-form-group>
+            </b-col>
+          </b-row>
+          <!-- Player Nets -->
+          <h4 class="text-secondary py-1">Nets</h4>
+          <b-row>
+            <b-col md cols="6">
+              <b-form-group label="Stamina Nets:" label-for="staminaNets">
                 <b-form-select
+                  id="staminaNets"
                   v-model="playerHistories[0].staminaNets"
                   :options="twoNets"
                 ></b-form-select>
-              </b-col>
-              <b-col>
-                <label for="currentAge">Current Age </label>
-              </b-col>
-              <b-col>
-                <b-form-select
-                  v-model="playerHistories[0].currentAge"
-                  :options="age"
-                ></b-form-select>
-              </b-col>
-            </b-row>
-            <b-row class="py-1">
-              <b-col>
-                <label for="keepingNets">Keeping Nets</label>
-              </b-col>
-              <b-col>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Keeping Nets:" label-for="keepingNets">
                 <b-form-select
                   v-model="playerHistories[0].keepingNets"
                   :options="twoNets"
                 ></b-form-select>
-              </b-col>
-              <b-col>
-                <label for="trainingAge">Training Until </label>
-              </b-col>
-              <b-col>
-                <b-form-select
-                  v-model="trainingAge"
-                  :options="age"
-                ></b-form-select>
-              </b-col>
-            </b-row>
-            <b-row class="py-1">
-              <b-col cols="3">
-                <label for="battingNets">Batting Nets</label>
-              </b-col>
-              <b-col cols="3">
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Batting Nets:" label-for="battingNets">
                 <b-form-select
                   v-model="playerHistories[0].battingNets"
                   :options="fourNets"
                 ></b-form-select>
-              </b-col>
-              <b-col>
-                <label for="trainingAge">Current Week </label>
-              </b-col>
-              <b-col>
-                <b-form-select
-                  v-model="playerHistories[0].currentWeek"
-                  :options="week"
-                ></b-form-select>
-              </b-col>
-            </b-row>
-            <b-row class="py-1">
-              <b-col cols="3">
-                <label for="bowlingNets">Bowling Nets</label>
-              </b-col>
-              <b-col cols="3">
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Conc Nets:" label-for="concNets">
+                <b-form-input
+                  id="concNets"
+                  disabled
+                  :value="getSecondaryNets(playerHistories[0], 'conc')"
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Bowling Nets:" label-for="bowlingNets">
                 <b-form-select
                   v-model="playerHistories[0].bowlingNets"
                   :options="fourNets"
                 ></b-form-select>
-              </b-col>
-            </b-row>
-            <b-row class="py-1">
-              <b-col cols="3">
-                <label for="fieldingNets">Fielding Nets</label>
-              </b-col>
-              <b-col cols="3">
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Cons Nets:" label-for="consNets">
+                <b-form-input
+                  id="consNets"
+                  disabled
+                  :value="getSecondaryNets(playerHistories[0], 'cons')"
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Fielding Nets:" label-for="fieldingNets">
                 <b-form-select
                   v-model="playerHistories[0].fieldingNets"
                   :options="twoNets"
                 ></b-form-select>
-              </b-col>
-            </b-row>
-          </b-card-text>
-        </b-card>
-      </b-card-group>
+              </b-form-group>
+            </b-col>
+          </b-row>
+          <!-- Training Options -->
+          <h4 class="text-secondary py-1">Training Options</h4>
+          <b-row align-v="center">
+            <b-col md cols="6">
+              <b-form-group label="Current Age:" label-for="currentAge">
+                <b-form-select
+                  id="currentAge"
+                  v-model="playerHistories[0].currentAge"
+                  :options="age"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Training Until:" label-for="trainingAge">
+                <b-form-select
+                  id="trainingAge"
+                  v-model="trainingAge"
+                  :options="age"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Current Week:" label-for="currentWeek">
+                <b-form-select
+                  id="currentWeek"
+                  v-model="playerHistories[0].currentWeek"
+                  :options="week"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6"
+              ><b-button block class="mt-2" type="submit" variant="secondary"
+                >Train!</b-button
+              ></b-col
+            >
+            <b-col></b-col>
+            <b-col></b-col>
+            <b-col></b-col>
+          </b-row>
+        </b-card-text>
+      </b-card>
     </b-form>
 
     <!-- This is where the results begin -->
@@ -202,199 +194,155 @@
         @submit.prevent="calculate(false)"
         v-if="playerHistories.length > 0"
       >
-        <b-card-group class="py-2">
-          <b-card bg-variant="primary" text-variant="light">
-            <b-card-text>
-              <h4 class="text-light py-1">
-                End of Season {{ index + 1 }} : Age
-                {{ playerHistory.currentAge + 1 }}
-              </h4>
-              <b-row class="py-1">
-                <b-col>
-                  <label for="stamina">Stamina: </label>
-                </b-col>
-                <b-col
-                  ><p class="text-secondary">
-                    {{ staminaSkills[Math.floor(playerHistory.stamina)] }}
-                  </p></b-col
-                >
-                <b-col>
+        <b-card class="mt-3 mb-2" bg-variant="primary" text-variant="light">
+          <b-card-text>
+            <h4 class="text-secondary pb-3">
+              End of Season {{ index + 1 }} : Age
+              {{ playerHistory.currentAge + 1 }}
+            </h4>
+            <!-- Player Skills -->
+            <b-row>
+              <b-col md cols="6">
+                <b-form-group label="Stamina:" label-for="stamina">
                   <b-form-input
                     id="stamina"
-                    v-model="playerHistory.stamina"
+                    :value="getSkillLevel(true, playerHistory.stamina)"
                     disabled
                   >
                   </b-form-input>
-                </b-col>
-                <b-col>
-                  <b-form-select
-                    v-model="playerHistory.staminaNets"
-                    :options="twoNets"
-                  ></b-form-select>
-                </b-col>
-                <b-col>
-                  <label for="keeping">Keeping: </label>
-                </b-col>
-                <b-col
-                  ><p class="text-secondary">
-                    {{
-                      21 > playerHistory.keeping
-                        ? skills[Math.floor(playerHistory.keeping)]
-                        : skills[skills.length - 1]
-                    }}
-                  </p></b-col
-                >
-                <b-col>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Keeping:" label-for="keeping">
                   <b-form-input
                     id="keeping"
-                    v-model="playerHistory.keeping"
+                    :value="getSkillLevel(false, playerHistory.keeping)"
                     disabled
                   >
                   </b-form-input>
-                </b-col>
-                <b-col>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Batting:" label-for="batting">
+                  <b-form-input
+                    id="batting"
+                    :value="getSkillLevel(false, playerHistory.batting)"
+                    disabled
+                  >
+                  </b-form-input>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Concetration:" label-for="concentration">
+                  <b-form-input
+                    id="concentration"
+                    :value="getSkillLevel(false, playerHistory.concentration)"
+                    disabled
+                  >
+                  </b-form-input>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Bowling:" label-for="bowling">
+                  <b-form-input
+                    id="bowling"
+                    :value="getSkillLevel(false, playerHistory.bowling)"
+                    disabled
+                  >
+                  </b-form-input>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Consistency:" label-for="consistency">
+                  <b-form-input
+                    id="consistency"
+                    :value="getSkillLevel(false, playerHistory.consistency)"
+                    disabled
+                  >
+                  </b-form-input>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Fielding:" label-for="fielding">
+                  <b-form-input
+                    id="fielding"
+                    :value="getSkillLevel(false, playerHistory.fielding)"
+                    disabled
+                  >
+                  </b-form-input>
+                </b-form-group>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col md cols="6">
+                <b-form-group label="Stamina Nets:" label-for="staminaNets">
+                  <b-form-select
+                    id="staminaNets"
+                    v-model="playerHistory.staminaNets"
+                    :options="twoNets"
+                    @change="calculate(false)"
+                  ></b-form-select>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Keeping Nets:" label-for="keepingNets">
                   <b-form-select
                     v-model="playerHistory.keepingNets"
                     :options="twoNets"
+                    @change="calculate(false)"
                   ></b-form-select>
-                </b-col>
-              </b-row>
-              <b-row class="py-1">
-                <b-col>
-                  <label for="batting">Batting: </label>
-                </b-col>
-                <b-col
-                  ><p class="text-secondary">
-                    {{
-                      21 > playerHistory.batting
-                        ? skills[Math.floor(playerHistory.batting)]
-                        : skills[skills.length - 1]
-                    }}
-                  </p></b-col
-                >
-                <b-col>
-                  <b-form-input
-                    id="batting"
-                    v-model="playerHistory.batting"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-col>
-                <b-col>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Batting Nets:" label-for="battingNets">
                   <b-form-select
                     v-model="playerHistory.battingNets"
                     :options="fourNets"
+                    @change="calculate(false)"
                   ></b-form-select>
-                </b-col>
-                <b-col>
-                  <label for="concentration">Concentration:</label>
-                </b-col>
-                <b-col
-                  ><p class="text-secondary">
-                    {{
-                      21 > playerHistory.concentration
-                        ? skills[Math.floor(playerHistory.concentration)]
-                        : skills[skills.length - 1]
-                    }}
-                  </p></b-col
-                >
-                <b-col>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Conc Nets:" label-for="concNets">
                   <b-form-input
-                    id="concentration"
-                    v-model="playerHistory.concentration"
+                    id="concNets"
                     disabled
+                    :value="getSecondaryNets(playerHistory, 'conc')"
                   >
                   </b-form-input>
-                </b-col>
-                <b-col> </b-col>
-              </b-row>
-              <b-row class="py-1">
-                <b-col>
-                  <label for="bowling">Bowling: </label>
-                </b-col>
-                <b-col
-                  ><p class="text-secondary">
-                    {{
-                      21 > playerHistory.bowling
-                        ? skills[Math.floor(playerHistory.bowling)]
-                        : skills[skills.length - 1]
-                    }}
-                  </p></b-col
-                >
-                <b-col>
-                  <b-form-input
-                    id="bowling"
-                    v-model="playerHistory.bowling"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-col>
-                <b-col>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Bowling Nets:" label-for="bowlingNets">
                   <b-form-select
                     v-model="playerHistory.bowlingNets"
                     :options="fourNets"
+                    @change="calculate(false)"
                   ></b-form-select>
-                </b-col>
-                <b-col>
-                  <label for="consistency"
-                    >Cons<span class="d-none d-md-inline">istency</span>:</label
-                  >
-                </b-col>
-                <b-col
-                  ><p class="text-secondary">
-                    {{
-                      21 > playerHistory.consistency
-                        ? skills[Math.floor(playerHistory.consistency)]
-                        : skills[skills.length - 1]
-                    }}
-                  </p></b-col
-                >
-                <b-col>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Cons Nets:" label-for="consNets">
                   <b-form-input
-                    id="consistency"
-                    v-model="playerHistory.consistency"
+                    id="consNets"
                     disabled
+                    :value="getSecondaryNets(playerHistory, 'cons')"
                   >
                   </b-form-input>
-                </b-col>
-                <b-col> </b-col>
-              </b-row>
-              <b-row class="py-1">
-                <b-col>
-                  <label for="fielding">Fielding: </label>
-                </b-col>
-                <b-col
-                  ><p class="text-secondary">
-                    {{
-                      21 > playerHistory.fielding
-                        ? skills[Math.floor(playerHistory.fielding)]
-                        : skills[skills.length - 1]
-                    }}
-                  </p></b-col
-                >
-                <b-col>
-                  <b-form-input
-                    id="fielding"
-                    v-model="playerHistory.fielding"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-col>
-                <b-col>
+                </b-form-group>
+              </b-col>
+              <b-col md cols="6">
+                <b-form-group label="Fielding Nets:" label-for="fieldingNets">
                   <b-form-select
                     v-model="playerHistory.fieldingNets"
                     :options="twoNets"
+                    @change="calculate(false)"
                   ></b-form-select>
-                </b-col>
-                <b-col cols="6">
-                  <b-button type="submit" variant="secondary"
-                    >Update Nets</b-button
-                  >
-                </b-col>
-              </b-row>
-            </b-card-text>
-          </b-card>
-        </b-card-group>
+                </b-form-group>
+              </b-col>
+            </b-row>
+          </b-card-text>
+        </b-card>
       </b-form>
     </div>
     <!-- This is where the result ends -->
@@ -549,6 +497,14 @@ export default {
             (currentPlayer.keepingNets > 0)
           );
       }
+    },
+    getSkillLevel(stamina, level){
+      let temp = "";
+      if (stamina)
+        temp = this.staminaSkills[Math.floor(level)];
+      else
+        temp = 21 > level ? this.skills[Math.floor(level)]: this.skills[this.skills.length - 1];
+      return level + " - " + temp;
     },
   },
 };
