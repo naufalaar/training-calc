@@ -1,116 +1,117 @@
 <template>
   <div>
-    <b-form @submit.prevent="calculate(true)">
-      <b-card-group deck class="mt-3 mb-2">
-        <b-card bg-variant="primary" text-variant="light">
-          <b-card-text>
-            <h4 class="text-light py-1">Wage Caculator</h4>
-            <b-row>
-              <b-col>
-                <h5 class="text-light text-right">Current Wage:</h5>
-              </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input id="wage" v-model="wage" v-on:change="calculateSkillLevel()" required>
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col></b-col>
-              <b-col></b-col>
-              <b-col></b-col>
-            </b-row>
-            <b-row align-v="center">
-              <b-col></b-col>
-              <b-col>
-                <h5 class="text-light text-center">Skill Level</h5>
-              </b-col>
-              <b-col>
-                <h5 class="text-light text-center">Estimate Wage</h5>
-              </b-col>
-              <b-col>
-                <h5 class="text-light text-center">Minimum wage</h5>
-              </b-col>
-              <b-col>
-                <h5 class="text-light text-center">Maximum wage</h5>
-              </b-col>
-              <b-col>
-                <h5 class="text-light text-center">Estimate Level</h5>
-              </b-col>
-            </b-row>
-            <b-row
-              align-v="center"
-              v-for="(skill, index) in wages"
-              v-bind:key="skill.skillName"
+    <b-card bg-variant="primary" text-variant="light" class="mt-3 mb-2">
+      <b-card-text>
+        <h4 class="text-secondary py-1">Wage Caculator</h4>
+        <!-- Wage -->
+        <b-row class="mb-3">
+          <b-col md cols="6">
+            <b-form-group label="Current Wage:" label-for="wage">
+              <b-form-input
+                id="wage"
+                v-model.number="wage"
+                v-on:change="calculateSkillLevel()"
+                required
+              >
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group
+              label="Estimated Total Wage:"
+              label-for="estimatedTotalWage"
             >
-              <b-col>
-                <h5 class="text-light text-right">{{ skill.skillName }}:</h5>
-              </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input
-                    id="stamina"
-                    v-model.number="skill.skillLevel"
-                    v-on:change="skillChange(index)"
-                    required
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input id="stamina" v-model="skill.current" disabled>
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input id="stamina" v-model="skill.min" disabled>
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input id="stamina" v-model="skill.max" disabled>
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col align="center" align-self="center">
-                <b-form-group>
-                  <b-form-input id="stamina" :value="skill.estimatedMin + ' - ' + skill.estimatedMax" disabled>
-                    
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-            </b-row>
-            <b-row align-v="center">
-              <b-col>
-                <h5 class="text-light text-right">Total:</h5>
-              </b-col>
-              <b-col> </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input id="stamina" v-model="estimatedWage" disabled>
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input id="stamina" v-model="minWage" disabled>
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col>
-                <b-form-group>
-                  <b-form-input id="stamina" v-model="maxWage" disabled>
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col></b-col>
-            </b-row>
-          </b-card-text>
-        </b-card>
-      </b-card-group>
-    </b-form>
+              <b-form-input
+                id="estimatedTotalWage"
+                v-model="estimatedWage"
+                disabled
+              >
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group
+              label="Estimated Min Wage:"
+              label-for="estimatedMinWage"
+            >
+              <b-form-input id="estimatedMinWage" v-model="minWage" disabled>
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group
+              label="Estimated Max Wage:"
+              label-for="estimatedMaxWage"
+            >
+              <b-form-input id="estimatedMaxWage" v-model="maxWage" disabled>
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col></b-col>
+          <b-col></b-col>
+        </b-row>
+        <!-- Skills -->
+        <b-row
+          align-v="center"
+          v-for="(skill, index) in wages"
+          v-bind:key="skill.skillName"
+          class="mb-3"
+        >
+          <b-col md cols="6">
+            <b-form-group
+              :label="skill.skillName + ' Level:'"
+              :label-for="skill.skillName"
+            >
+              <b-form-input
+                :id="skill.skillName"
+                v-model.number="skill.skillLevel"
+                v-on:change="skillChange(index)"
+                required
+              >
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group label="Skill" label-for="skillName">
+              <b-form-input
+                id="skillName"
+                :value="getSkillLevel(skill.skillName, skill.skillLevel)"
+                disabled
+              >
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group label="Estimated Level" label-for="estimatedLevel">
+              <b-form-input
+                id="estimatedLevel"
+                :value="skill.estimatedMin + ' - ' + skill.estimatedMax"
+                disabled
+              >
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group label="Estimated Wage" label-for="estimatedWage">
+              <b-form-input id="estimatedWage" v-model="skill.current" disabled>
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group label="Minimum Wage" label-for="minWage">
+              <b-form-input id="minWage" v-model="skill.min" disabled>
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+          <b-col md cols="6">
+            <b-form-group label="Maximum Wage" label-for="maxWage">
+              <b-form-input id="maxWage" v-model="skill.max" disabled>
+              </b-form-input>
+            </b-form-group>
+          </b-col>
+        </b-row>
+      </b-card-text>
+    </b-card>
     <!-- This is where the result ends -->
   </div>
 </template>
@@ -122,14 +123,14 @@ export default {
   data() {
     return {
       baseWage: 250,
-      wage: 641,
+      wage: 250,
       estimatedWage: 0,
       minWage: 0,
       maxWage: 0,
       wages: [
         {
           skillName: "Stamina",
-          skillLevel: 5,
+          skillLevel: 1,
           type: "secondary",
           current: 0,
           min: 0,
@@ -149,7 +150,7 @@ export default {
         },
         {
           skillName: "Bowling",
-          skillLevel: 6,
+          skillLevel: 1,
           type: "primary",
           current: 0,
           min: 0,
@@ -159,7 +160,7 @@ export default {
         },
         {
           skillName: "Fielding",
-          skillLevel: 3,
+          skillLevel: 1,
           type: "secondary",
           current: 0,
           min: 0,
@@ -179,7 +180,7 @@ export default {
         },
         {
           skillName: "Concentration",
-          skillLevel: 2,
+          skillLevel: 1,
           type: "secondary",
           current: 0,
           min: 0,
@@ -189,7 +190,7 @@ export default {
         },
         {
           skillName: "Consistency",
-          skillLevel: 6,
+          skillLevel: 1,
           type: "secondary",
           current: 0,
           min: 0,
@@ -202,6 +203,14 @@ export default {
   },
   mounted() {
     this.initialWage();
+  },
+  computed: {
+    skills: function () {
+      return this.$store.state.skills;
+    },
+    staminaSkills: function () {
+      return this.$store.state.staminaSkills;
+    },
   },
   methods: {
     initialWage() {
@@ -225,7 +234,7 @@ export default {
       this.wageReset();
       this.calculateSkillLevel();
     },
-    wageReset(){
+    wageReset() {
       this.estimatedWage = this.wageSum("current");
       this.minWage = this.wageSum("min");
       this.maxWage = this.wageSum("max");
@@ -270,37 +279,55 @@ export default {
       }
       return sum.toFixed(2);
     },
-    calculateSkillLevel(){
-      for(let i=0;i<this.wages.length;i++){
-        this.wages[i].estimatedMin = this.calculateEstimate(this.wages[i], "Min");
-        this.wages[i].estimatedMax = this.calculateEstimate(this.wages[i], "Max");
+    calculateSkillLevel() {
+      for (let i = 0; i < this.wages.length; i++) {
+        this.wages[i].estimatedMin = this.calculateEstimate(
+          this.wages[i],
+          "Min"
+        );
+        this.wages[i].estimatedMax = this.calculateEstimate(
+          this.wages[i],
+          "Max"
+        );
       }
     },
-    calculateEstimate(skill, type){
+    calculateEstimate(skill, type) {
       let skillWage = Number.parseInt(this.wage) - this.baseWage;
-      console.log(skillWage);
-      for (let wage of this.wages){
-        if (wage.skillName != skill.skillName){
-          if (type == "Min")
-            skillWage -= wage.max;
-          else if (type == "Max")
-            skillWage -= wage.min;
+      for (let wage of this.wages) {
+        if (wage.skillName != skill.skillName) {
+          if (type == "Min") skillWage -= wage.max;
+          else if (type == "Max") skillWage -= wage.min;
         }
       }
       console.log(skill.skillName + ":" + skillWage);
 
       let skillLevel = 1;
-      if(skill.type == "primary")
-        skillLevel = Math.pow((skillWage/0.05),1/5)+1;
+      if (skill.type == "primary")
+        skillLevel = Math.pow(skillWage / 0.05, 1 / 5) + 1;
       else if (skill.type == "secondary")
-        skillLevel = (Math.pow((skillWage/0.05),1/5) + 0.03) / 0.67;
-      if(isNaN(skillLevel))
-        return skill.skillLevel;
+        skillLevel = (Math.pow(skillWage / 0.05, 1 / 5) + 0.03) / 0.67;
+      if (isNaN(skillLevel)) return skill.skillLevel;
       if (type == "Min" && skill.skillLevel > skillLevel)
         return skill.skillLevel;
       if (type == "Max" && Math.floor(skill.skillLevel) + 0.99 < skillLevel)
         return Math.floor(skill.skillLevel) + 0.99;
+      if (type == "Max" && Math.floor(skill.skillLevel) > skillLevel)
+        return Math.floor(skill.skillLevel) + 0.00;
       return skillLevel.toFixed(2);
+    },
+    getSkillLevel(skill, level) {
+      let temp = "";
+      if (skill == "Stamina")
+        temp =
+          11 > level
+            ? this.staminaSkills[Math.floor(level)]
+            : this.staminaSkills[this.staminaSkills.length - 1];
+      else
+        temp =
+          21 > level
+            ? this.skills[Math.floor(level)]
+            : this.skills[this.skills.length - 1];
+      return temp;
     },
   },
 };
