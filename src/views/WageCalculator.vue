@@ -10,6 +10,7 @@
               <b-form-input
                 id="wage"
                 v-model.number="wage"
+                :state="validateWage()"
                 v-on:change="calculateSkillLevel()"
                 required
               >
@@ -66,6 +67,7 @@
                 :id="skill.skillName"
                 v-model.number="skill.skillLevel"
                 v-on:change="skillChange(index)"
+                :state="validateSkill(index)"
                 required
               >
               </b-form-input>
@@ -312,7 +314,7 @@ export default {
       if (type == "Max" && Math.floor(skill.skillLevel) + 0.99 < skillLevel)
         return Math.floor(skill.skillLevel) + 0.99;
       if (type == "Max" && Math.floor(skill.skillLevel) > skillLevel)
-        return Math.floor(skill.skillLevel) + 0.00;
+        return Math.floor(skill.skillLevel) + 0.0;
       return skillLevel.toFixed(2);
     },
     getSkillLevel(skill, level) {
@@ -328,6 +330,21 @@ export default {
             ? this.skills[Math.floor(level)]
             : this.skills[this.skills.length - 1];
       return temp;
+    },
+    validateWage() {
+      return this.wage >= this.baseWage;
+    },
+    validateSkill(index) {
+      if (index == 0)
+        return (
+          this.wages[index].skillLevel >= 1 &&
+          this.wages[index].skillLevel <= 11
+        );
+      else
+        return (
+          this.wages[index].skillLevel >= 1 &&
+          this.wages[index].skillLevel <= 25
+        );
     },
   },
 };

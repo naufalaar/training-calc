@@ -11,6 +11,7 @@
                 <b-form-input
                   id="stamina"
                   v-model.number="seasonResult[0].stamina"
+                  :state="validateSkill('stamina')"
                   required
                 >
                 </b-form-input>
@@ -21,6 +22,7 @@
                 <b-form-input
                   id="keeping"
                   v-model.number="seasonResult[0].keeping"
+                  :state="validateSkill('keeping')"
                   required
                 >
                 </b-form-input>
@@ -31,6 +33,7 @@
                 <b-form-input
                   id="batting"
                   v-model.number="seasonResult[0].batting"
+                  :state="validateSkill('batting')"
                   required
                 >
                 </b-form-input>
@@ -41,6 +44,7 @@
                 <b-form-input
                   id="concentration"
                   v-model.number="seasonResult[0].concentration"
+                  :state="validateSkill('concentration')"
                   required
                 >
                 </b-form-input>
@@ -51,6 +55,7 @@
                 <b-form-input
                   id="bowling"
                   v-model.number="seasonResult[0].bowling"
+                  :state="validateSkill('bowling')"
                   required
                 >
                 </b-form-input>
@@ -61,6 +66,7 @@
                 <b-form-input
                   id="consistency"
                   v-model.number="seasonResult[0].consistency"
+                  :state="validateSkill('consistency')"
                   required
                 >
                 </b-form-input>
@@ -71,6 +77,7 @@
                 <b-form-input
                   id="fielding"
                   v-model.number="seasonResult[0].fielding"
+                  :state="validateSkill('fielding')"
                   required
                 >
                 </b-form-input>
@@ -159,7 +166,12 @@
             <b-col></b-col>
             <b-col></b-col>
             <b-col md cols="6"
-              ><b-button block class="mt-2" type="submit" variant="secondary"
+              ><b-button
+                block
+                class="mt-2"
+                type="submit"
+                variant="secondary"
+                :disabled="!canTrain()"
                 >Train!</b-button
               ></b-col
             >
@@ -470,6 +482,29 @@ export default {
             ? this.skills[Math.floor(level)]
             : this.skills[this.skills.length - 1];
       return level + " - " + temp;
+    },
+    validateSkill(skillName) {
+      if (skillName == "stamina")
+        return (
+          this.seasonResult[0][skillName] >= 1 &&
+          this.seasonResult[0][skillName] <= 11
+        );
+      else
+        return (
+          this.seasonResult[0][skillName] >= 1 &&
+          this.seasonResult[0][skillName] <= 25
+        );
+    },
+    canTrain() {
+      return (
+        this.validateSkill("stamina") &&
+        this.validateSkill("batting") &&
+        this.validateSkill("bowling") &&
+        this.validateSkill("consistency") &&
+        this.validateSkill("concentration") &&
+        this.validateSkill("keeping") &&
+        this.validateSkill("fielding")
+      );
     },
   },
 };
