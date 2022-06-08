@@ -204,160 +204,160 @@
       v-for="(playerHistory, index) in filteredResults"
       v-bind:key="playerHistory.currentAge"
     >
-      <b-form
-        @submit.prevent="calculate(false)"
+      <b-card
+        class="mt-3 mb-2"
+        bg-variant="primary"
+        text-variant="light"
         v-if="playerHistories.length > 0"
       >
-        <b-card class="mt-3 mb-2" bg-variant="primary" text-variant="light">
-          <b-card-text>
-            <h4 class="text-secondary pb-3">
-              End of Season {{ index + 1 }} : Age
-              {{ playerHistory.currentAge + 1 }}
-            </h4>
-            <!-- Player Skills -->
-            <b-row>
-              <b-col md cols="6">
-                <b-form-group label="Stamina:" label-for="stamina">
-                  <b-form-input
-                    id="stamina"
-                    :value="getSkillLevel(true, playerHistory.stamina)"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Keeping:" label-for="keeping">
-                  <b-form-input
-                    id="keeping"
-                    :value="getSkillLevel(false, playerHistory.keeping)"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Batting:" label-for="batting">
-                  <b-form-input
-                    id="batting"
-                    :value="getSkillLevel(false, playerHistory.batting)"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Concetration:" label-for="concentration">
-                  <b-form-input
-                    id="concentration"
-                    :value="getSkillLevel(false, playerHistory.concentration)"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Bowling:" label-for="bowling">
-                  <b-form-input
-                    id="bowling"
-                    :value="getSkillLevel(false, playerHistory.bowling)"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Consistency:" label-for="consistency">
-                  <b-form-input
-                    id="consistency"
-                    :value="getSkillLevel(false, playerHistory.consistency)"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Fielding:" label-for="fielding">
-                  <b-form-input
-                    id="fielding"
-                    :value="getSkillLevel(false, playerHistory.fielding)"
-                    disabled
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col md cols="6">
-                <b-form-group label="Stamina Nets:" label-for="staminaNets">
-                  <b-form-select
-                    id="staminaNets"
-                    v-model="playerHistory.staminaNets"
-                    :options="twoNets"
-                    @change="calculate(false)"
-                  ></b-form-select>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Keeping Nets:" label-for="keepingNets">
-                  <b-form-select
-                    v-model="playerHistory.keepingNets"
-                    :options="twoNets"
-                    @change="calculate(false)"
-                  ></b-form-select>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Batting Nets:" label-for="battingNets">
-                  <b-form-select
-                    v-model="playerHistory.battingNets"
-                    :options="fourNets"
-                    @change="calculate(false)"
-                  ></b-form-select>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Conc Nets:" label-for="concNets">
-                  <b-form-input
-                    id="concNets"
-                    disabled
-                    :value="getSecondaryNets(playerHistory, 'conc')"
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Bowling Nets:" label-for="bowlingNets">
-                  <b-form-select
-                    v-model="playerHistory.bowlingNets"
-                    :options="fourNets"
-                    @change="calculate(false)"
-                  ></b-form-select>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Cons Nets:" label-for="consNets">
-                  <b-form-input
-                    id="consNets"
-                    disabled
-                    :value="getSecondaryNets(playerHistory, 'cons')"
-                  >
-                  </b-form-input>
-                </b-form-group>
-              </b-col>
-              <b-col md cols="6">
-                <b-form-group label="Fielding Nets:" label-for="fieldingNets">
-                  <b-form-select
-                    v-model="playerHistory.fieldingNets"
-                    :options="twoNets"
-                    @change="calculate(false)"
-                  ></b-form-select>
-                </b-form-group>
-              </b-col>
-            </b-row>
-          </b-card-text>
-        </b-card>
-      </b-form>
+        <b-card-text>
+          <h4 class="text-secondary pb-3">
+            End of Season {{ index + 1 }} : Age
+            {{ playerHistory.currentAge + 1 }}
+          </h4>
+          <!-- Player Skills -->
+          <b-row>
+            <b-col md cols="6">
+              <b-form-group label="Stamina:" label-for="stamina">
+                <b-form-input
+                  id="stamina"
+                  :value="getSkillLevel(true, playerHistory.stamina)"
+                  disabled
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Keeping:" label-for="keeping">
+                <b-form-input
+                  id="keeping"
+                  :value="getSkillLevel(false, playerHistory.keeping)"
+                  disabled
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Batting:" label-for="batting">
+                <b-form-input
+                  id="batting"
+                  :value="getSkillLevel(false, playerHistory.batting)"
+                  disabled
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Concetration:" label-for="concentration">
+                <b-form-input
+                  id="concentration"
+                  :value="getSkillLevel(false, playerHistory.concentration)"
+                  disabled
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Bowling:" label-for="bowling">
+                <b-form-input
+                  id="bowling"
+                  :value="getSkillLevel(false, playerHistory.bowling)"
+                  disabled
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Consistency:" label-for="consistency">
+                <b-form-input
+                  id="consistency"
+                  :value="getSkillLevel(false, playerHistory.consistency)"
+                  disabled
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Fielding:" label-for="fielding">
+                <b-form-input
+                  id="fielding"
+                  :value="getSkillLevel(false, playerHistory.fielding)"
+                  disabled
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col md cols="6">
+              <b-form-group label="Stamina Nets:" label-for="staminaNets">
+                <b-form-select
+                  id="staminaNets"
+                  v-model="playerHistory.staminaNets"
+                  :options="twoNets"
+                  @change="modifyNets('staminaNets', index)"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Keeping Nets:" label-for="keepingNets">
+                <b-form-select
+                  v-model="playerHistory.keepingNets"
+                  :options="twoNets"
+                  @change="modifyNets('keepingNets', index)"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Batting Nets:" label-for="battingNets">
+                <b-form-select
+                  v-model="playerHistory.battingNets"
+                  :options="fourNets"
+                  @change="modifyNets('battingNets', index)"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Conc Nets:" label-for="concNets">
+                <b-form-input
+                  id="concNets"
+                  disabled
+                  :value="getSecondaryNets(playerHistory, 'conc')"
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Bowling Nets:" label-for="bowlingNets">
+                <b-form-select
+                  v-model="playerHistory.bowlingNets"
+                  :options="fourNets"
+                  @change="modifyNets('bowlingNets', index)"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Cons Nets:" label-for="consNets">
+                <b-form-input
+                  id="consNets"
+                  disabled
+                  :value="getSecondaryNets(playerHistory, 'cons')"
+                >
+                </b-form-input>
+              </b-form-group>
+            </b-col>
+            <b-col md cols="6">
+              <b-form-group label="Fielding Nets:" label-for="fieldingNets">
+                <b-form-select
+                  v-model="playerHistory.fieldingNets"
+                  :options="twoNets"
+                  @change="modifyNets('fieldingNets', index)"
+                ></b-form-select>
+              </b-form-group>
+            </b-col>
+          </b-row>
+        </b-card-text>
+      </b-card>
     </div>
     <!-- This is where the result ends -->
   </div>
@@ -548,6 +548,14 @@ export default {
         this.validateSkill("fielding") &&
         this.validateAge()
       );
+    },
+    modifyNets(skill, index) {
+      console.log(skill + " " + index);
+      for (let i = index + 2; i < this.playerHistories.length; i++) {
+        console.log("Moo: " + i);
+        this.playerHistories[i][skill] = this.playerHistories[i - 1][skill];
+      }
+      this.calculate(false);
     },
   },
 };

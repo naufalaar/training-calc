@@ -180,7 +180,10 @@
       </b-card>
     </b-form>
     <!-- Results begin here -->
-    <div v-for="weekResult in filteredResults" v-bind:key="weekResult.week">
+    <div
+      v-for="(weekResult, index) in filteredResults"
+      v-bind:key="weekResult.week"
+    >
       <b-card class="mt-3 mb-2" bg-variant="primary" text-variant="light">
         <b-card-text>
           <h4 class="text-light py-1">Week {{ weekResult.week }}</h4>
@@ -264,7 +267,7 @@
                   id="staminaNets"
                   v-model="weekResult.staminaNets"
                   :options="twoNets"
-                  @change="calculate(false)"
+                  @change="modifyNets('staminaNets', index)"
                 ></b-form-select>
               </b-form-group>
             </b-col>
@@ -273,7 +276,7 @@
                 <b-form-select
                   v-model="weekResult.keepingNets"
                   :options="twoNets"
-                  @change="calculate(false)"
+                  @change="modifyNets('keepingNets', index)"
                 ></b-form-select>
               </b-form-group>
             </b-col>
@@ -282,7 +285,7 @@
                 <b-form-select
                   v-model="weekResult.battingNets"
                   :options="fourNets"
-                  @change="calculate(false)"
+                  @change="modifyNets('battingNets', index)"
                 ></b-form-select>
               </b-form-group>
             </b-col>
@@ -301,7 +304,7 @@
                 <b-form-select
                   v-model="weekResult.bowlingNets"
                   :options="fourNets"
-                  @change="calculate(false)"
+                  @change="modifyNets('bowlingNets', index)"
                 ></b-form-select>
               </b-form-group>
             </b-col>
@@ -320,7 +323,7 @@
                 <b-form-select
                   v-model="weekResult.fieldingNets"
                   :options="twoNets"
-                  @change="calculate(false)"
+                  @change="modifyNets('fieldingNets', index)"
                 ></b-form-select>
               </b-form-group>
             </b-col>
@@ -389,9 +392,6 @@ export default {
     },
   },
   methods: {
-    toggleSkill(toggle) {
-      this.isHovered = toggle;
-    },
     calculate(build) {
       if (build) {
         this.build();
@@ -505,6 +505,14 @@ export default {
         this.validateSkill("keeping") &&
         this.validateSkill("fielding")
       );
+    },
+    modifyNets(skill, index) {
+      console.log(skill + " " + index);
+      for (let i = index + 2; i < this.seasonResult.length; i++) {
+        console.log("Moo: " + i);
+        this.seasonResult[i][skill] = this.seasonResult[i - 1][skill];
+      }
+      this.calculate(false);
     },
   },
 };
