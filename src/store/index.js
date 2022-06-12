@@ -5,6 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    clipboard: {
+      stamina : 1,
+      batting : 1,
+      bowling : 1,
+      fielding : 1,
+      keeping : 1,
+      concentration : 1,
+      consistency : 1,
+    },
     fourNets: [0, 1, 2, 3, 4],
     twoNets: [0, 1, 2],
     week: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
@@ -121,8 +130,16 @@ export default new Vuex.Store({
     {value: 19, text: "19 Seasons"},
     {value: 20, text: "20 Seasons"},],
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    SET_CLIPBOARD(state, clipboard){
+      state.clipboard = clipboard
+    },
+  },
+  actions: {
+    setClipboard({commit}, clipboard){
+      commit('SET_CLIPBOARD', clipboard)
+    },
+  },
   modules: {},
   getters: {
     getFourNets: (state) => {
@@ -148,6 +165,9 @@ export default new Vuex.Store({
     },
     getSeasons: (state) => {
       return state.seasons;
+    },
+    getClipboard: (state) => {
+      return state.clipboard;
     },
   },
 });

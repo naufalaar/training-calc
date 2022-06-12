@@ -3,7 +3,7 @@
     <b-card bg-variant="primary" text-variant="light" class="mt-3 mb-2">
       <b-card-text>
         <h4 class="text-secondary py-1">Plan Options</h4>
-        <b-row class="mb-3">
+        <b-row align-v="center" class="mb-3">
           <b-col md cols="6">
             <b-form-group label="Plan For:" label-for="season">
               <b-form-select
@@ -17,19 +17,21 @@
           <b-col></b-col>
           <b-col></b-col>
           <b-col></b-col>
-          <b-col md cols="6" align-self="center"
+          <b-col md cols="6"
             ><b-button
               v-on:click="addPlayer()"
               block
+              class="mt-2"
               type="submit"
               variant="secondary"
               >Add Player</b-button
             ></b-col
           >
-          <b-col md cols="6" align-self="center">
+          <b-col md cols="6">
             <b-button
               v-on:click="train(true)"
               block
+              class="mt-2"
               type="submit"
               variant="secondary"
               :disabled="!canTrain()"
@@ -64,7 +66,7 @@
             >
               <b-card-text>
                 <!-- Row 1 -->
-                <b-row>
+                <b-row align-v="center">
                   <b-col md cols="6">
                     <b-form-group label="Player Name:" label-for="name">
                       <b-form-input
@@ -94,17 +96,34 @@
                       ></b-form-select>
                     </b-form-group>
                   </b-col>
-                  <b-col md cols="6" align-self="center"
+                  <b-col md cols="6"
                     ><b-button
                       v-on:click="removePlayer(index)"
                       block
+                      class="mt-2"
                       type="submit"
                       variant="secondary"
                       >Remove Player</b-button
                     ></b-col
                   >
-                  <b-col></b-col>
-                  <b-col></b-col>
+                  <b-col md cols="6"
+                    ><b-button
+                      block
+                      class="mt-2"
+                      variant="secondary"
+                      @click="copySkills(index)"
+                      >Copy Skills</b-button
+                    ></b-col
+                  >
+                  <b-col md cols="6"
+                    ><b-button
+                      block
+                      class="mt-2"
+                      variant="secondary"
+                      @click="readClipboard(index)"
+                      >Paste Skills</b-button
+                    ></b-col
+                  >
                   <b-col></b-col>
                 </b-row>
 
@@ -699,11 +718,32 @@ export default {
     },
     modifyNets(skill, index, playerIndex) {
       for (let i = index + 1; i < this.results.length; i++) {
-        console.log("Moo: " + i);
         this.results[i][playerIndex][skill] =
           this.results[i - 1][playerIndex][skill];
       }
       this.train(false);
+    },
+    copySkills(index) {
+      let temp = {
+        stamina: this.players[index].stamina,
+        batting: this.players[index].batting,
+        bowling: this.players[index].bowling,
+        fielding: this.players[index].fielding,
+        keeping: this.players[index].keeping,
+        concentration: this.players[index].concentration,
+        consistency: this.players[index].consistency,
+      };
+      this.$store.dispatch("setClipboard", temp);
+    },
+    readClipboard(index) {
+      let temp = this.$store.state.clipboard;
+      this.players[index].stamina = temp.stamina;
+      this.players[index].batting = temp.batting;
+      this.players[index].bowling = temp.bowling;
+      this.players[index].fielding = temp.fielding;
+      this.players[index].keeping = temp.keeping;
+      this.players[index].concentration = temp.concentration;
+      this.players[index].consistency = temp.consistency;
     },
   },
 };

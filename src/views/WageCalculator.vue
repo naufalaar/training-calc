@@ -4,7 +4,7 @@
       <b-card-text>
         <h4 class="text-secondary py-1">Wage Caculator</h4>
         <!-- Wage -->
-        <b-row class="mb-3">
+        <b-row align-v="center" class="mb-3">
           <b-col md cols="6">
             <b-form-group label="Current Wage:" label-for="wage">
               <b-form-input
@@ -48,8 +48,26 @@
               </b-form-input>
             </b-form-group>
           </b-col>
-          <b-col></b-col>
-          <b-col></b-col>
+          <b-col md cols="6"
+            ><b-button
+              block
+              class="mt-2"
+              type="submit"
+              variant="secondary"
+              @click="copySkills"
+              >Copy Skills</b-button
+            ></b-col
+          >
+          <b-col md cols="6"
+            ><b-button
+              block
+              class="mt-2"
+              type="submit"
+              variant="secondary"
+              @click="readClipboard"
+              >Paste Skills</b-button
+            ></b-col
+          >
         </b-row>
         <!-- Skills -->
         <b-row
@@ -345,6 +363,28 @@ export default {
           this.wages[index].skillLevel >= 1 &&
           this.wages[index].skillLevel <= 25
         );
+    },
+    copySkills() {
+      let temp = {
+        stamina : this.wages[0].skillLevel,
+        batting : this.wages[1].skillLevel,
+        bowling : this.wages[2].skillLevel,
+        fielding : this.wages[3].skillLevel,
+        keeping : this.wages[4].skillLevel,
+        concentration : this.wages[5].skillLevel,
+        consistency : this.wages[6].skillLevel,
+      };
+      this.$store.dispatch("setClipboard", temp);
+    },
+    readClipboard() {
+      let temp = this.$store.state.clipboard;
+      this.wages[0].skillLevel = temp.stamina;
+      this.wages[1].skillLevel = temp.batting;
+      this.wages[2].skillLevel = temp.bowling;
+      this.wages[3].skillLevel = temp.fielding;
+      this.wages[4].skillLevel = temp.keeping;
+      this.wages[5].skillLevel = temp.concentration;
+      this.wages[6].skillLevel = temp.consistency;
     },
   },
 };

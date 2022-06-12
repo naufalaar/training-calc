@@ -151,7 +151,7 @@
           </b-row>
           <!-- Training Options -->
           <h4 class="text-secondary py-1">Training Options</h4>
-          <b-row>
+          <b-row align-v="center">
             <b-col md cols="6"
               ><b-form-group label="Player Age:" label-for="playerAge">
                 <b-form-select
@@ -160,11 +160,6 @@
                   :options="age"
                 ></b-form-select> </b-form-group
             ></b-col>
-            <b-col></b-col>
-            <b-col></b-col>
-            <b-col></b-col>
-            <b-col></b-col>
-            <b-col></b-col>
             <b-col md cols="6"
               ><b-button
                 block
@@ -175,6 +170,27 @@
                 >Train!</b-button
               ></b-col
             >
+            <b-col md cols="6"
+              ><b-button
+                block
+                class="mt-2"
+                variant="secondary"
+                @click="copySkills"
+                >Copy Skills</b-button
+              ></b-col
+            >
+            <b-col md cols="6"
+              ><b-button
+                block
+                class="mt-2"
+                variant="secondary"
+                @click="readClipboard"
+                >Paste Skills</b-button
+              ></b-col
+            >
+            <b-col></b-col>
+            <b-col></b-col>
+            <b-col></b-col>
           </b-row>
         </b-card-text>
       </b-card>
@@ -513,6 +529,28 @@ export default {
         this.seasonResult[i][skill] = this.seasonResult[i - 1][skill];
       }
       this.calculate(false);
+    },
+    copySkills() {
+      let temp = {
+        stamina: this.seasonResult[0].stamina,
+        batting: this.seasonResult[0].batting,
+        bowling: this.seasonResult[0].bowling,
+        fielding: this.seasonResult[0].fielding,
+        keeping: this.seasonResult[0].keeping,
+        concentration: this.seasonResult[0].concentration,
+        consistency: this.seasonResult[0].consistency,
+      };
+      this.$store.dispatch("setClipboard", temp);
+    },
+    readClipboard() {
+      let temp = this.$store.state.clipboard;
+      this.seasonResult[0].stamina = temp.stamina;
+      this.seasonResult[0].batting = temp.batting;
+      this.seasonResult[0].bowling = temp.bowling;
+      this.seasonResult[0].fielding = temp.fielding;
+      this.seasonResult[0].keeping = temp.keeping;
+      this.seasonResult[0].concentration = temp.concentration;
+      this.seasonResult[0].consistency = temp.consistency;
     },
   },
 };

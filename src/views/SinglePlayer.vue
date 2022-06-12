@@ -190,9 +190,24 @@
                 :disabled="!canTrain()"
                 >Train!</b-button
               ></b-col
+            ><b-col md cols="6"
+              ><b-button
+                block
+                class="mt-2"
+                variant="secondary"
+                @click="copySkills"
+                >Copy Skills</b-button
+              ></b-col
             >
-            <b-col></b-col>
-            <b-col></b-col>
+            <b-col md cols="6"
+              ><b-button
+                block
+                class="mt-2"
+                variant="secondary"
+                @click="readClipboard"
+                >Paste Skills</b-button
+              ></b-col
+            >
             <b-col></b-col>
           </b-row>
         </b-card-text>
@@ -556,6 +571,28 @@ export default {
         this.playerHistories[i][skill] = this.playerHistories[i - 1][skill];
       }
       this.calculate(false);
+    },
+    copySkills() {
+      let temp = {
+        stamina: this.playerHistories[0].stamina,
+        batting: this.playerHistories[0].batting,
+        bowling: this.playerHistories[0].bowling,
+        fielding: this.playerHistories[0].fielding,
+        keeping: this.playerHistories[0].keeping,
+        concentration: this.playerHistories[0].concentration,
+        consistency: this.playerHistories[0].consistency,
+      };
+      this.$store.dispatch("setClipboard", temp);
+    },
+    readClipboard() {
+      let temp = this.$store.state.clipboard;
+      this.playerHistories[0].stamina = temp.stamina;
+      this.playerHistories[0].batting = temp.batting;
+      this.playerHistories[0].bowling = temp.bowling;
+      this.playerHistories[0].fielding = temp.fielding;
+      this.playerHistories[0].keeping = temp.keeping;
+      this.playerHistories[0].concentration = temp.concentration;
+      this.playerHistories[0].consistency = temp.consistency;
     },
   },
 };
