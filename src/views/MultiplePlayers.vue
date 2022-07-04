@@ -607,6 +607,7 @@ export default {
       }
       for (let i = 0; i < this.players.length; i++) {
         let player = this.players[i];
+        this.fourNetsToast(player, player.targetAge);
         for (let j = 0; j < this.season; j++) {
           if (j < player.targetAge - player.playerAge) {
             let current = $.extend(true, {}, player);
@@ -717,6 +718,7 @@ export default {
       return true;
     },
     modifyNets(skill, index, playerIndex) {
+      this.fourNetsToast(this.results[index][playerIndex], this.results[index][playerIndex].targetAge);
       for (let i = index + 1; i < this.results.length; i++) {
         this.results[i][playerIndex][skill] =
           this.results[i - 1][playerIndex][skill];
@@ -744,6 +746,22 @@ export default {
       this.players[index].keeping = temp.keeping;
       this.players[index].concentration = temp.concentration;
       this.players[index].consistency = temp.consistency;
+    },
+    fourNetsToast(player, targetAge) {
+      if (
+        (player.battingNets > 3 || player.bowlingNets > 3) &&
+        targetAge > 19
+      ) {
+        this.$bvToast.toast(
+          `The training times for 4 primary nets are currently unknown for players older than 18. Please change the number of nets for ages 19 and above for ${player.playerName} to get accurate results`,
+          {
+            title: `Insufficient Data`,
+            toaster: "b-toaster-top-full",
+            noAutoHide: true,
+            variant: "primary",
+          }
+        );
+      }
     },
   },
 };

@@ -453,6 +453,7 @@ export default {
     },
     calculate(build) {
       if (build) {
+        this.fourNetsToast(this.playerHistories[0]);
         this.build();
       }
       this.modifyResult();
@@ -565,9 +566,8 @@ export default {
       );
     },
     modifyNets(skill, index) {
-      console.log(skill + " " + index);
+      this.fourNetsToast(this.playerHistories[index+1])
       for (let i = index + 2; i < this.playerHistories.length; i++) {
-        console.log("Moo: " + i);
         this.playerHistories[i][skill] = this.playerHistories[i - 1][skill];
       }
       this.calculate(false);
@@ -593,6 +593,22 @@ export default {
       this.playerHistories[0].keeping = temp.keeping;
       this.playerHistories[0].concentration = temp.concentration;
       this.playerHistories[0].consistency = temp.consistency;
+    },
+    fourNetsToast(player) {
+      if (
+        (player.battingNets > 3 || player.bowlingNets > 3) &&
+        this.trainingAge > 19
+      ) {
+        this.$bvToast.toast(
+          `The training times for 4 primary nets are currently unknown for players older than 18. Please change the number of nets for ages 19 and above for accurate results`,
+          {
+            title: `Insufficient Data`,
+            toaster: "b-toaster-top-full",
+            noAutoHide: true,
+            variant: "primary",
+          }
+        );
+      }
     },
   },
 };
