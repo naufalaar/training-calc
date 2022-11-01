@@ -1,4 +1,13 @@
 <template>
+  <div>
+    <b-alert show variant="danger">
+    <p>
+      This tool will no longer provide accurate results due to the training changes being introduced in Season 57.
+      We will update the tool once there is a better understanding of training times for age / skill combination.
+      I would love to get in touch if you are contributing or wish to contribute in estimating the new training times.
+      Please reach out to me on Battrick by clicking on my username - <a href="https://www.battrick.org/nl/myoffice.asp?userID=129254">Cryptix</a> 
+    </p>
+  </b-alert>
     <b-navbar toggleable="lg" type="dark" variant="primary">
       <b-navbar-brand to="/">{{ appName }}</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -20,9 +29,13 @@
           <b-nav-item to="/insane" exact exact-active-class="active"
             >Insane Plan</b-nav-item
           >
+          <b-nav-item to="/help" exact exact-active-class="active"
+            >Help</b-nav-item
+          >
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
+  </div>
 </template>
 
 <script>
