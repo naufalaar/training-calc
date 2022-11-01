@@ -29,9 +29,6 @@
           <b-nav-item to="/insane" exact exact-active-class="active"
             >Insane Plan</b-nav-item
           >
-          <b-nav-item to="/help" exact exact-active-class="active"
-            >Help</b-nav-item
-          >
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
