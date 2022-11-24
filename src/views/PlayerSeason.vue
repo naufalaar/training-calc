@@ -524,7 +524,7 @@ export default {
       );
     },
     modifyNets(skill, index) {
-      this.fourNetsToast(this.seasonResult[index+1]);
+      this.fourNetsToast(this.seasonResult[index + 1]);
       for (let i = index + 2; i < this.seasonResult.length; i++) {
         this.seasonResult[i][skill] = this.seasonResult[i - 1][skill];
       }

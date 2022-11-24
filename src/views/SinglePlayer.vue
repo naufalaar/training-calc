@@ -566,7 +566,7 @@ export default {
       );
     },
     modifyNets(skill, index) {
-      this.fourNetsToast(this.playerHistories[index+1])
+      this.fourNetsToast(this.playerHistories[index + 1]);
       for (let i = index + 2; i < this.playerHistories.length; i++) {
         this.playerHistories[i][skill] = this.playerHistories[i - 1][skill];
       }

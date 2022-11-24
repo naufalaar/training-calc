@@ -366,13 +366,13 @@ export default {
     },
     copySkills() {
       let temp = {
-        stamina : this.wages[0].skillLevel,
-        batting : this.wages[1].skillLevel,
-        bowling : this.wages[2].skillLevel,
-        fielding : this.wages[3].skillLevel,
-        keeping : this.wages[4].skillLevel,
-        concentration : this.wages[5].skillLevel,
-        consistency : this.wages[6].skillLevel,
+        stamina: this.wages[0].skillLevel,
+        batting: this.wages[1].skillLevel,
+        bowling: this.wages[2].skillLevel,
+        fielding: this.wages[3].skillLevel,
+        keeping: this.wages[4].skillLevel,
+        concentration: this.wages[5].skillLevel,
+        consistency: this.wages[6].skillLevel,
       };
       this.$store.dispatch("setClipboard", temp);
     },

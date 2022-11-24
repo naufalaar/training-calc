@@ -718,7 +718,10 @@ export default {
       return true;
     },
     modifyNets(skill, index, playerIndex) {
-      this.fourNetsToast(this.results[index][playerIndex], this.results[index][playerIndex].targetAge);
+      this.fourNetsToast(
+        this.results[index][playerIndex],
+        this.results[index][playerIndex].targetAge
+      );
       for (let i = index + 1; i < this.results.length; i++) {
         this.results[i][playerIndex][skill] =
           this.results[i - 1][playerIndex][skill];

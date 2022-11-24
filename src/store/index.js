@@ -6,13 +6,13 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     clipboard: {
-      stamina : 1,
-      batting : 1,
-      bowling : 1,
-      fielding : 1,
-      keeping : 1,
-      concentration : 1,
-      consistency : 1,
+      stamina: 1,
+      batting: 1,
+      bowling: 1,
+      fielding: 1,
+      keeping: 1,
+      concentration: 1,
+      consistency: 1,
     },
     fourNets: [0, 1, 2, 3, 4],
     twoNets: [0, 1, 2],
@@ -109,35 +109,37 @@ export default new Vuex.Store({
       "Superb",
       "Superb*",
     ],
-    seasons: [{value: 1, text: "1 Season"},
-    {value: 2, text: "2 Seasons"},
-    {value: 3, text: "3 Seasons"},
-    {value: 4, text: "4 Seasons"},
-    {value: 5, text: "5 Seasons"},
-    {value: 6, text: "6 Seasons"},
-    {value: 7, text: "7 Seasons"},
-    {value: 8, text: "8 Seasons"},
-    {value: 9, text: "9 Seasons"},
-    {value: 10, text: "10 Seasons"},
-    {value: 11, text: "11 Seasons"},
-    {value: 12, text: "12 Seasons"},
-    {value: 13, text: "13 Seasons"},
-    {value: 14, text: "14 Seasons"},
-    {value: 15, text: "15 Seasons"},
-    {value: 16, text: "16 Seasons"},
-    {value: 17, text: "17 Seasons"},
-    {value: 18, text: "18 Seasons"},
-    {value: 19, text: "19 Seasons"},
-    {value: 20, text: "20 Seasons"},],
+    seasons: [
+      { value: 1, text: "1 Season" },
+      { value: 2, text: "2 Seasons" },
+      { value: 3, text: "3 Seasons" },
+      { value: 4, text: "4 Seasons" },
+      { value: 5, text: "5 Seasons" },
+      { value: 6, text: "6 Seasons" },
+      { value: 7, text: "7 Seasons" },
+      { value: 8, text: "8 Seasons" },
+      { value: 9, text: "9 Seasons" },
+      { value: 10, text: "10 Seasons" },
+      { value: 11, text: "11 Seasons" },
+      { value: 12, text: "12 Seasons" },
+      { value: 13, text: "13 Seasons" },
+      { value: 14, text: "14 Seasons" },
+      { value: 15, text: "15 Seasons" },
+      { value: 16, text: "16 Seasons" },
+      { value: 17, text: "17 Seasons" },
+      { value: 18, text: "18 Seasons" },
+      { value: 19, text: "19 Seasons" },
+      { value: 20, text: "20 Seasons" },
+    ],
   },
   mutations: {
-    SET_CLIPBOARD(state, clipboard){
-      state.clipboard = clipboard
+    SET_CLIPBOARD(state, clipboard) {
+      state.clipboard = clipboard;
     },
   },
   actions: {
-    setClipboard({commit}, clipboard){
-      commit('SET_CLIPBOARD', clipboard)
+    setClipboard({ commit }, clipboard) {
+      commit("SET_CLIPBOARD", clipboard);
     },
   },
   modules: {},
