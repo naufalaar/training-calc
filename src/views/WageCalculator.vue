@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-card bg-variant="primary" text-variant="light" class="mt-3 mb-2">
+    <b-card bg-variant="secondary" text-variant="dark" class="mb-2 rounded-0 border-0">
       <b-card-text>
-        <h4 class="text-secondary py-1">Wage Caculator</h4>
+        
         <!-- Wage -->
         <b-row align-v="center" class="mb-3">
           <b-col md cols="6">
@@ -53,7 +53,7 @@
               block
               class="mt-2"
               type="submit"
-              variant="secondary"
+              variant="primary"
               @click="copySkills"
               >Copy Skills</b-button
             ></b-col
@@ -63,7 +63,7 @@
               block
               class="mt-2"
               type="submit"
-              variant="secondary"
+              variant="primary"
               @click="readClipboard"
               >Paste Skills</b-button
             ></b-col

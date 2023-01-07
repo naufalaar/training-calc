@@ -1,9 +1,9 @@
 <template>
   <div>
     <b-form @submit.prevent="calculate(true)">
-      <b-card class="mt-3 mb-2" bg-variant="primary" text-variant="light">
+      <b-card class="mb-2 rounded-0 border-0" bg-variant="secondary" text-variant="dark">
         <b-card-text>
-          <h4 class="text-secondary py-1">Current Skills</h4>
+          <h4 class="text-dark py-1">Current Skills</h4>
           <!-- Player Skills -->
           <b-row>
             <b-col md cols="6">
@@ -85,7 +85,7 @@
             </b-col>
           </b-row>
           <!-- Player Nets -->
-          <h4 class="text-secondary py-1">Nets</h4>
+          <h4 class="text-dark py-1">Nets</h4>
           <b-row>
             <b-col md cols="6">
               <b-form-group label="Stamina Nets:" label-for="staminaNets">
@@ -150,7 +150,7 @@
             </b-col>
           </b-row>
           <!-- Training Options -->
-          <h4 class="text-secondary py-1">Training Options</h4>
+          <h4 class="text-dark py-1">Training Options</h4>
           <b-row align-v="center">
             <b-col md cols="6">
               <b-form-group label="Current Age:" label-for="currentAge">
@@ -186,7 +186,7 @@
                 block
                 class="mt-2"
                 type="submit"
-                variant="secondary"
+                variant="primary"
                 :disabled="!canTrain()"
                 >Train!</b-button
               ></b-col
@@ -194,7 +194,7 @@
               ><b-button
                 block
                 class="mt-2"
-                variant="secondary"
+                variant="primary"
                 @click="copySkills"
                 >Copy Skills</b-button
               ></b-col
@@ -203,7 +203,7 @@
               ><b-button
                 block
                 class="mt-2"
-                variant="secondary"
+                variant="primary"
                 @click="readClipboard"
                 >Paste Skills</b-button
               ></b-col
@@ -221,12 +221,12 @@
     >
       <b-card
         class="mt-3 mb-2"
-        bg-variant="primary"
-        text-variant="light"
+        bg-variant="secondary"
+        text-variant="dark"
         v-if="playerHistories.length > 0"
       >
         <b-card-text>
-          <h4 class="text-secondary pb-3">
+          <h4 class="text-dark pb-3">
             End of Season {{ index + 1 }} : Age
             {{ playerHistory.currentAge + 1 }}
           </h4>
@@ -380,6 +380,7 @@
 
 <script>
 import $ from "jquery";
+import utility from "../plugins/utilities";
 export default {
   name: "SinglePlayer",
   components: {},
@@ -434,6 +435,8 @@ export default {
   },
   methods: {
     build() {
+      let t = utility.testFunction("Nawfal");
+      console.log(t);
       let backup = $.extend(true, {}, this.playerHistories[0]);
       this.playerHistories = [];
       this.playerHistories.push(backup);

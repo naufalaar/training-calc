@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-alert show variant="danger">
+    <b-alert show variant="primary" class="mb-0 rounded-0">
       <p>
         This tool will no longer provide accurate results due to the training
         changes being introduced in Season 57. We will update the tool once
@@ -13,7 +13,7 @@
         >
       </p>
     </b-alert>
-    <b-navbar toggleable="lg" type="dark" variant="primary">
+    <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand to="/">{{ appName }}</b-navbar-brand>
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
@@ -33,6 +33,9 @@
           >
           <b-nav-item to="/insane" exact exact-active-class="active"
             >Insane Plan</b-nav-item
+          >
+          <b-nav-item to="/rawData" exact exact-active-class="active"
+            >Raw Data</b-nav-item
           >
         </b-navbar-nav>
       </b-collapse>

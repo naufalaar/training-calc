@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-card bg-variant="primary" text-variant="light" class="mt-3 mb-2">
+    <b-card bg-variant="secondary" text-variant="dark" class="rounded-0 border-0">
       <b-card-text>
-        <h4 class="text-secondary py-1">Plan Options</h4>
+        <h4 class="text-dark py-1">Plan Options</h4>
         <b-row align-v="center" class="mb-3">
           <b-col md cols="6">
             <b-form-group label="Plan For:" label-for="season">
@@ -23,7 +23,7 @@
               block
               class="mt-2"
               type="submit"
-              variant="secondary"
+              variant="primary"
               >Add Player</b-button
             ></b-col
           >
@@ -33,7 +33,7 @@
               block
               class="mt-2"
               type="submit"
-              variant="secondary"
+              variant="primary"
               :disabled="!canTrain()"
               >Train!</b-button
             ></b-col
@@ -44,7 +44,7 @@
           v-for="(player, index) in players"
           :key="index.id"
           v-b-toggle="`id-${index}`"
-          variant="secondary"
+          variant="primary"
           class="mr-1 mb-3"
           >{{ player.playerName }}</b-button
         >
@@ -61,8 +61,8 @@
           >
             <b-card
               border-variant="primary"
-              bg-variant="primary"
-              text-variant="light"
+              bg-variant="secondary"
+              text-variant="dark"
             >
               <b-card-text>
                 <!-- Row 1 -->
@@ -102,7 +102,7 @@
                       block
                       class="mt-2"
                       type="submit"
-                      variant="secondary"
+                      variant="primary"
                       >Remove Player</b-button
                     ></b-col
                   >
@@ -110,7 +110,7 @@
                     ><b-button
                       block
                       class="mt-2"
-                      variant="secondary"
+                      variant="primary"
                       @click="copySkills(index)"
                       >Copy Skills</b-button
                     ></b-col
@@ -119,7 +119,7 @@
                     ><b-button
                       block
                       class="mt-2"
-                      variant="secondary"
+                      variant="primary"
                       @click="readClipboard(index)"
                       >Paste Skills</b-button
                     ></b-col
@@ -289,18 +289,18 @@
     <b-card
       v-for="(result, seasonIndex) in results"
       :key="seasonIndex.id"
-      bg-variant="primary"
-      text-variant="light"
-      class="my-3"
+      bg-variant="secondary"
+      text-variant="dark"
+      class="rounded-0 border-0 my-3"
     >
       <b-card-text>
-        <h4 class="text-light py-1">End of Season {{ seasonIndex + 1 }}</h4>
+        <h4 class="text-dark py-1">End of Season {{ seasonIndex + 1 }}</h4>
         <!-- Start of Player Results Loop -->
         <div>
           <b-card
             border-variant="primary"
-            bg-variant="primary"
-            text-variant="light"
+            bg-variant="secondary"
+            text-variant="dark"
           >
             <b-card-text>
               <!-- Row 1 -->
@@ -311,7 +311,7 @@
                 <div v-if="Object.keys(player).length > 0">
                   <b-row>
                     <b-col>
-                      <h5 class="text-secondary pb-1">
+                      <h5 class="text-dark pb-1">
                         <strong
                           >{{ player.playerName }} -
                           {{ player.playerAge + 1 }}</strong

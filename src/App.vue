@@ -27,17 +27,23 @@ body {
 }
 .form-control {
   background-color: var(--dark) !important;
-  border-color: var(--secondary) !important;
+  border-color: var(--primary) !important;
   color: var(--secondary) !important;
 }
 .custom-select {
   background-color: var(--dark) !important;
-  border-color: var(--secondary) !important;
+  border-color: var(--primary) !important;
+  color: var(--secondary) !important;
+}
+.custom-input {
+  background-color: var(--dark) !important;
+  border-color: var(--primary) !important;
   color: var(--secondary) !important;
 }
 .form-control:disabled {
   background-color: var(--dark) !important;
   border-color: var(--dark) !important;
+  color: var(--info) !important;
 }
 .form-control:disabled::placeholder {
   color: var(--secondary) !important;
